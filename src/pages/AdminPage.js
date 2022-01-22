@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
-import AddBook from "./AddBook";
+import AddBook from "../components/AddBook";
 
 const AdminPage = () => {
-
   return <AddBook />;
 };
 

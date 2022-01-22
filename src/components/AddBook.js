@@ -50,8 +50,7 @@ const AddBook = () => {
             <div className="ui stacked segment">
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="book icon"></i>
-
+                  <i className="book icon"></i>
                   <input
                     type="text"
                     name="name"
@@ -62,7 +61,7 @@ const AddBook = () => {
               </div>
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="user icon"></i>
+                  <i className="user icon"></i>
                   <input
                     type="text"
                     name="author"
@@ -73,7 +72,7 @@ const AddBook = () => {
               </div>
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="user outline icon"></i>
+                  <i className="user outline icon"></i>
                   <input
                     type="text"
                     name="translator"
@@ -84,7 +83,7 @@ const AddBook = () => {
               </div>
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="question circle icon"></i>
+                  <i className="question circle icon"></i>
                   <input
                     type="text"
                     name="description"
@@ -95,7 +94,7 @@ const AddBook = () => {
               </div>
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="file image icon"></i>
+                  <i className="file image icon"></i>
                   <input
                     type="url"
                     name="cover"
@@ -106,7 +105,7 @@ const AddBook = () => {
               </div>
               <div className="field">
                 <div className="ui left icon input">
-                  <i class="hashtag icon"></i>
+                  <i className="hashtag icon"></i>
                   <input
                     type="number"
                     name="pages"

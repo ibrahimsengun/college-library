@@ -1,11 +1,11 @@
 import { Fragment, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminPage from "./components/AdminPage";
-import HomePage from "./components/HomePage";
-import LibraryPage from "./components/LibraryPage";
-import LoginForm from "./components/LoginForm";
+import AdminPage from "./pages/AdminPage";
+import HomePage from "./pages/HomePage";
+import LibraryPage from "./pages/LibraryPage";
+import LoginPage from "./pages/LoginPage";
 import Navigation from "./components/Navigation";
-import RegisterForm from "./components/RegisterForm";
+import RegisterPage from "./pages/RegisterPage";
 import AuthContext from "./context/auth-context";
 
 function App() {
@@ -16,11 +16,11 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<HomePage />} />
-          {!isLoggedIn && <Route path="/login" element={<LoginForm />} />}
-          {!isLoggedIn && <Route path="/register" element={<RegisterForm />} />}
+          {!isLoggedIn && <Route path="/login" element={<LoginPage />} />}
+          {!isLoggedIn && <Route path="/register" element={<RegisterPage />} />}
           {isLoggedIn && <Route path="/library" element={<LibraryPage />} />}
         </Routes>
       </BrowserRouter>

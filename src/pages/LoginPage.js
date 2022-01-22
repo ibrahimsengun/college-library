@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth-context";
 
-const LoginForm = () => {
+const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -12,6 +12,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -32,10 +33,23 @@ const LoginForm = () => {
         setIsLoading(false);
 
         authContext.login(res.data.idToken);
-        navigate("/library");
+        navigate("/home");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        const message = (
+          <div className="ui negative message">
+            <i
+              className="close icon"
+              onClick={() => {
+                setErrorMessage(null);
+              }}
+            ></i>
+            <div className="header">Login Error</div>
+            <p>{error.response.data.error.message}</p>
+          </div>
+        );
+        console.log(error.response.data);
+        setErrorMessage(message);
         setIsLoading(false);
       });
   }
@@ -81,12 +95,13 @@ const LoginForm = () => {
             </div>
           </form>
           <div className="ui message">
-            New to us? <NavLink to="/register">Regsiter</NavLink>
+            New to us? <NavLink to="/register">Register</NavLink>
           </div>
+          {errorMessage && errorMessage}
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default LoginPage;

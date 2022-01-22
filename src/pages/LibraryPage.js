@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import BookItem from "./BookItem";
+import BookItem from "../components/BookItem";
 
 const LibraryPage = () => {
   const [books, setBooks] = useState([]);
@@ -34,11 +34,16 @@ const LibraryPage = () => {
   }, []);
 
   return (
-    <div className="ui container">
-      <div className="ui divided items">
-        {books.map((book) => (
-          <BookItem book={book} />
-        ))}
+    <div className="ui vertical masthead center aligned segment">
+      <div className="ui container">
+        {books.length < 1 && <h1>There are no books.</h1>}
+        {books.length > 0 && (
+          <div className="ui divided items">
+            {books.map((book) => (
+              <BookItem key={book.id} book={book} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

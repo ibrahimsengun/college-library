@@ -18,10 +18,25 @@ const Navigation = () => {
     <div className="ui massive menu">
       <div className="header item">
         <div className="ui left icon">
-          <i class="book icon"></i>
+          <i className="book icon"></i>
         </div>
         College Library
       </div>
+      {isLoggedIn && (
+        <NavLink to="/home" className="item">
+          Home
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink to="/library" className="item">
+          Library
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink to="/admin" className="item">
+          Admin
+        </NavLink>
+      )}
       <div className="right menu">
         {!isLoggedIn && (
           <NavLink to="/login" className="item">
