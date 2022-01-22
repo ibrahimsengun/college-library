@@ -1,5 +1,6 @@
 import { Fragment, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminPage from "./components/AdminPage";
 import HomePage from "./components/HomePage";
 import LibraryPage from "./components/LibraryPage";
 import LoginForm from "./components/LoginForm";
@@ -16,6 +17,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<HomePage />} />
           {!isLoggedIn && <Route path="/login" element={<LoginForm />} />}
           {!isLoggedIn && <Route path="/register" element={<RegisterForm />} />}

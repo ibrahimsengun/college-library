@@ -14,7 +14,20 @@ const LibraryPage = () => {
           )}`
         )
         .then((res) => {
-          setBooks(res.data);
+          const allBooks = [];
+          for (const i in res.data) {
+            allBooks.push({
+              id: res.data[i].id,
+              name: res.data[i].name,
+              author: res.data[i].author,
+              translator: res.data[i].translator,
+              description: res.data[i].description,
+              cover: res.data[i].cover,
+              pages: res.data[i].pages,
+            });
+          }
+          console.log(allBooks);
+          setBooks(allBooks);
         });
     }
     getBooks();

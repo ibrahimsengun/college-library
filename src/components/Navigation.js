@@ -16,7 +16,12 @@ const Navigation = () => {
 
   return (
     <div className="ui massive menu">
-      <div className="header item">College Library</div>
+      <div className="header item">
+        <div className="ui left icon">
+          <i class="book icon"></i>
+        </div>
+        College Library
+      </div>
       <div className="right menu">
         {!isLoggedIn && (
           <NavLink to="/login" className="item">

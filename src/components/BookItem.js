@@ -6,13 +6,14 @@ const BookItem = (props) => {
       <img className="ui small image" src={props.book.cover} alt="avatar" />
       <div className="content">
         <div className="header">{props.book.name}</div>
-        <div className="description">
-          <b>Writer:</b> {props.book.writer}
+        <div className="meta">
+          {props.book.author} (Author), {props.book.translator} (Translator)
         </div>
-        <div class="extra">
-          <div class="ui right floated primary button">
+        <div className="description">{props.book.description}</div>
+        <div className="extra">
+          <div className="ui right floated primary button">
             Rent
-            <i class="right chevron icon"></i>
+            <i className="right chevron icon"></i>
           </div>
         </div>
       </div>
