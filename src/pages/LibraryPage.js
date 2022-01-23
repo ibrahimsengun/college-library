@@ -26,7 +26,6 @@ const LibraryPage = () => {
               pages: res.data[i].pages,
             });
           }
-          console.log(allBooks);
           setBooks(allBooks);
         });
     }

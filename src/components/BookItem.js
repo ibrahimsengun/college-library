@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth-context";
 
 const BookItem = (props) => {
-  const { userId } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -13,17 +13,17 @@ const BookItem = (props) => {
   async function rentBook() {
     setIsLoading(true);
 
-    const book = { ...props.book, rentedUser: userId };
+    const book = { ...props.book };
 
     await axios
       .put(
-        `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/rentedBooks/${
-          book.id
-        }.json?auth=${localStorage.getItem("token")}`,
+        `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${
+          user.id
+        }/rentedBooks/${book.id}.json?auth=${localStorage.getItem("token")}`,
         book
       )
       .then((res) => {
-        axios
+        /*axios
           .delete(
             `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/books/${
               book.id
@@ -31,7 +31,7 @@ const BookItem = (props) => {
           )
           .then((res) => {
             setIsLoading(false);
-          });
+          });*/
       });
 
     navigate("/home");

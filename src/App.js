@@ -9,7 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AuthContext from "./context/auth-context";
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
 
   return (
     <Fragment>
@@ -17,8 +17,11 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="*" element={<HomePage />} />
+          {user.isAdmin && <Route path="/admin" element={<AdminPage />} />}
+
+          {isLoggedIn && <Route path="*" element={<HomePage />} />}
+          {!isLoggedIn && <Route path="*" element={<LoginPage />} />}
+
           {!isLoggedIn && <Route path="/login" element={<LoginPage />} />}
           {!isLoggedIn && <Route path="/register" element={<RegisterPage />} />}
           {isLoggedIn && <Route path="/library" element={<LibraryPage />} />}

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import uniqid from "uniqid";
 
 const RegisterPage = () => {
   const emailRef = useRef();
@@ -12,35 +11,33 @@ const RegisterPage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [checkState, setCheckState] = useState(false);
 
   async function submitHandler(event) {
     event.preventDefault();
 
     setIsLoading(true);
 
-    const user = {
-      id: uniqid(),
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      returnSecureToken: true,
-    };
-
     await axios
       .post(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBpSorQlW3cjxpl4XkxDMxDzupWvDgEWX4",
-        user
+        {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+          returnSecureToken: true,
+        }
       )
       .then((response) => {
         console.log(response);
 
         axios
           .put(
-            `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${user.id}.json?auth=${response.data.idToken}`,
+            `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${response.data.localId}.json?auth=${response.data.idToken}`,
             {
-              id: user.id,
+              id: response.data.localId,
               name: nameRef.current.value,
               email: emailRef.current.value,
+              isAdmin: checkState,
             }
           )
           .then((res) => {
@@ -107,6 +104,20 @@ const RegisterPage = () => {
                     placeholder="Password"
                     ref={passwordRef}
                   />
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="ui checkbox">
+                  <input
+                    type="checkbox"
+                    name="example"
+                    checked={checkState}
+                    onChange={() => {
+                      setCheckState(!checkState);
+                    }}
+                  />
+                  <label>Is this user admin?</label>
                 </div>
               </div>
               {isLoading && (

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import uniqid from "uniqid";
 
 const AddBook = () => {
@@ -9,6 +10,8 @@ const AddBook = () => {
   const descriptionRef = useRef();
   const coverRef = useRef();
   const pagesRef = useRef();
+
+  const navigate = useNavigate();
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -38,6 +41,7 @@ const AddBook = () => {
         book
       )
       .then((res) => {
+        navigate("/library");
         console.log(res);
       });
   }

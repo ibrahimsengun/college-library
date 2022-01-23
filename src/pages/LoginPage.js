@@ -7,7 +7,7 @@ const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const authContext = useContext(AuthContext);
+  const { login, setUser, user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -29,11 +29,21 @@ const LoginPage = () => {
         }
       )
       .then((res) => {
-        console.log(res);
-        setIsLoading(false);
+        console.log(res.data.localId);
+        login(res.data.idToken);
 
-        authContext.login(res.data.idToken);
-        navigate("/home");
+        axios
+          .get(
+            `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${
+              res.data.localId
+            }.json?auth=${localStorage.getItem("token")}`
+          )
+          .then((response) => {
+            setUser(response.data);
+
+            if (!user.isAdmin) navigate("/home");
+            if (user.isAdmin) navigate("/admin");
+          });
       })
       .catch((error) => {
         const message = (
