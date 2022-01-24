@@ -16,8 +16,11 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path="/home" element={<HomePage />} />
-          {user.isAdmin && <Route path="/admin" element={<AdminPage />} />}
+          {user && user.isAdmin && <Route path="*" />}
+          {isLoggedIn && <Route path="/home" element={<HomePage />} />}
+          {user && user.isAdmin && (
+            <Route path="/admin" element={<AdminPage />} />
+          )}
 
           {isLoggedIn && <Route path="*" element={<HomePage />} />}
           {!isLoggedIn && <Route path="*" element={<LoginPage />} />}

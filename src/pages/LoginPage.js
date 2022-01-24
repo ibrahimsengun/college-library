@@ -29,20 +29,15 @@ const LoginPage = () => {
         }
       )
       .then((res) => {
-        console.log(res.data.localId);
-        login(res.data.idToken);
-
         axios
           .get(
-            `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${
-              res.data.localId
-            }.json?auth=${localStorage.getItem("token")}`
+            `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${res.data.localId}.json?auth=${res.data.idToken}`
           )
           .then((response) => {
-            setUser(response.data);
+            login(res.data.idToken);
 
-            if (!user.isAdmin) navigate("/home");
-            if (user.isAdmin) navigate("/admin");
+            if (response.data.isAdmin) navigate("/admin");
+            else navigate("/home");
           });
       })
       .catch((error) => {

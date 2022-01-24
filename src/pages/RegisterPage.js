@@ -54,7 +54,7 @@ const RegisterPage = () => {
                 setErrorMessage(null);
               }}
             ></i>
-            <div className="header">Login Error</div>
+            <div className="header">Register Error</div>
             <p>{error.response.data.error.message}</p>
           </div>
         );

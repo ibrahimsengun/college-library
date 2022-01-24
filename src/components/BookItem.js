@@ -23,7 +23,7 @@ const BookItem = (props) => {
         book
       )
       .then((res) => {
-        /*axios
+        axios
           .delete(
             `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/books/${
               book.id
@@ -31,7 +31,7 @@ const BookItem = (props) => {
           )
           .then((res) => {
             setIsLoading(false);
-          });*/
+          });
       });
 
     navigate("/home");

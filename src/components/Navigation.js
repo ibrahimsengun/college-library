@@ -16,7 +16,7 @@ const Navigation = () => {
 
   let content;
 
-  if (isLoggedIn && user.isAdmin) {
+  if (user && isLoggedIn && user.isAdmin) {
     content = (
       <>
         <NavLink to="admin" className="item">
