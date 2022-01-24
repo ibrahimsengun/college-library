@@ -42,91 +42,91 @@ const AddBook = () => {
       )
       .then((res) => {
         navigate("/library");
-        console.log(res);
       });
   }
   return (
-    <div className="login">
-      <div className="ui middle aligned center aligned grid">
-        <div className="column">
-          <h1>Add Book</h1>
-          <form className="ui large form" onSubmit={submitHandler}>
-            <div className="ui stacked segment">
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="book icon"></i>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Book Name"
-                    ref={bookNameRef}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon"></i>
-                  <input
-                    type="text"
-                    name="author"
-                    placeholder="Author Name"
-                    ref={authorRef}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user outline icon"></i>
-                  <input
-                    type="text"
-                    name="translator"
-                    placeholder="Translator Name"
-                    ref={translatorRef}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="question circle icon"></i>
-                  <input
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                    ref={descriptionRef}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="file image icon"></i>
-                  <input
-                    type="url"
-                    name="cover"
-                    placeholder="Cover Image URL"
-                    ref={coverRef}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="hashtag icon"></i>
-                  <input
-                    type="number"
-                    name="pages"
-                    placeholder="How Many Pages"
-                    ref={pagesRef}
-                  />
-                </div>
-              </div>
-              <button className="ui primary labeled icon button" type="submit">
-                <i className="plus circle icon"></i>
-                Add
-              </button>
+    <>
+      <h1>Add Book</h1>
+      <form className="ui form" onSubmit={submitHandler}>
+        <div className="ui stacked segment">
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="book icon"></i>
+              <input
+                type="text"
+                name="name"
+                placeholder="Book Name"
+                autoComplete="off"
+                ref={bookNameRef}
+              />
             </div>
-          </form>
+          </div>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="user icon"></i>
+              <input
+                type="text"
+                name="author"
+                placeholder="Author Name"
+                autoComplete="off"
+                ref={authorRef}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="user outline icon"></i>
+              <input
+                type="text"
+                name="translator"
+                placeholder="Translator Name"
+                autoComplete="off"
+                ref={translatorRef}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="question circle icon"></i>
+              <input
+                type="text"
+                name="description"
+                placeholder="Description"
+                autoComplete="off"
+                ref={descriptionRef}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="file image icon"></i>
+              <input
+                type="url"
+                name="cover"
+                placeholder="Cover Image URL"
+                autoComplete="off"
+                ref={coverRef}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <div className="ui left icon input">
+              <i className="hashtag icon"></i>
+              <input
+                type="number"
+                name="pages"
+                placeholder="How Many Pages"
+                ref={pagesRef}
+              />
+            </div>
+          </div>
+          <button className="ui primary labeled icon button" type="submit">
+            <i className="plus circle icon"></i>
+            Add
+          </button>
         </div>
-      </div>
-    </div>
+      </form>
+    </>
   );
 };
 

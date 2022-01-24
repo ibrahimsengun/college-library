@@ -96,18 +96,26 @@ const HomePage = () => {
           <h4>There are no rented books</h4>
         )}
         {userRentedBooks.length > 0 && (
-          <div className="ui big relaxed celled list">
+          <div className="ui cards">
             {userRentedBooks.map((book) => (
-              <div key={book.id} className="item">
-                <div className="right floated content">
+              <div key={book.id} className="card">
+                <div className="content">
+                  <img
+                    className="left floated tiny ui image"
+                    alt="book-cover"
+                    src={book.cover}
+                  />
+                  <div className="header">{book.name}</div>
+                  <div className="meta">{book.author}</div>
+                </div>
+                <div className="extra content">
                   <div
                     className="ui primary button"
                     onClick={() => returnBook(book)}
                   >
-                    Return
+                    Return Book
                   </div>
                 </div>
-                {book.name} ({book.author})
               </div>
             ))}
           </div>
@@ -118,6 +126,7 @@ const HomePage = () => {
             <div className="ui text loader">Loading</div>
           </div>
         )}
+        <div className="ui divider"></div>
         <button
           className="ui right labeled icon primary button"
           onClick={() => {

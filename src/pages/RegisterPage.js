@@ -28,8 +28,6 @@ const RegisterPage = () => {
         }
       )
       .then((response) => {
-        console.log(response);
-
         axios
           .put(
             `https://college-library-83790-default-rtdb.europe-west1.firebasedatabase.app/users/${response.data.localId}.json?auth=${response.data.idToken}`,
@@ -58,84 +56,81 @@ const RegisterPage = () => {
             <p>{error.response.data.error.message}</p>
           </div>
         );
-        console.log(error.response.data);
         setErrorMessage(message);
         setIsLoading(false);
       });
   }
 
   return (
-    <div className="login">
-      <div className="ui middle aligned center aligned grid">
-        <div className="column">
-          <h1>Register</h1>
-          <form className="ui large form" onSubmit={submitHandler}>
-            <div className="ui stacked segment">
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon"></i>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name and Surname"
-                    ref={nameRef}
-                  />
-                </div>
+    <div className="ui four column centered grid">
+      <div className="column center aligned">
+        <h1>Register</h1>
+        <form className="ui large form" onSubmit={submitHandler}>
+          <div className="ui stacked segment">
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="user icon"></i>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name and Surname"
+                  ref={nameRef}
+                />
               </div>
-
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="envelope icon"></i>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="E-Mail"
-                    ref={emailRef}
-                  />
-                </div>
-              </div>
-
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon"></i>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    ref={passwordRef}
-                  />
-                </div>
-              </div>
-
-              <div className="field">
-                <div className="ui checkbox">
-                  <input
-                    type="checkbox"
-                    name="example"
-                    checked={checkState}
-                    onChange={() => {
-                      setCheckState(!checkState);
-                    }}
-                  />
-                  <label>Is this user admin?</label>
-                </div>
-              </div>
-              {isLoading && (
-                <div className="ui active inverted dimmer">
-                  <div className="ui text loader">Loading</div>
-                </div>
-              )}
-              <button className="ui primary labeled icon button" type="submit">
-                <i className="unlock alternate icon"></i>
-                Register
-              </button>
             </div>
-          </form>
-          <div className="ui message">
-            Already register? <NavLink to="/login">Login</NavLink>
+
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="envelope icon"></i>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-Mail"
+                  ref={emailRef}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="user icon"></i>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  ref={passwordRef}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <div className="ui checkbox">
+                <input
+                  type="checkbox"
+                  name="example"
+                  checked={checkState}
+                  onChange={() => {
+                    setCheckState(!checkState);
+                  }}
+                />
+                <label>Is this user admin?</label>
+              </div>
+            </div>
+            {isLoading && (
+              <div className="ui active inverted dimmer">
+                <div className="ui text loader">Loading</div>
+              </div>
+            )}
+            <button className="ui primary labeled icon button" type="submit">
+              <i className="unlock alternate icon"></i>
+              Register
+            </button>
           </div>
-          {errorMessage && errorMessage}
+        </form>
+        <div className="ui message">
+          Already register? <NavLink to="/login">Login</NavLink>
         </div>
+        {errorMessage && errorMessage}
       </div>
     </div>
   );

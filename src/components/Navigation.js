@@ -19,13 +19,16 @@ const Navigation = () => {
   if (user && isLoggedIn && user.isAdmin) {
     content = (
       <>
-        <NavLink to="admin" className="item">
-          Add Book
+        <NavLink to="/admin" className="item">
+          Admin
+        </NavLink>
+        <NavLink to="/library" className="item">
+          Library
         </NavLink>
         <div className="right menu">
-          <button className="ui orange button item" onClick={logoutHandler}>
+          <span className="item" onClick={logoutHandler}>
             Logout
-          </button>
+          </span>
         </div>
       </>
     );
@@ -39,9 +42,9 @@ const Navigation = () => {
           Library
         </NavLink>
         <div className="right menu">
-          <button className="ui orange button item" onClick={logoutHandler}>
+          <span className="item" onClick={logoutHandler}>
             Logout
-          </button>
+          </span>
         </div>
       </>
     );
