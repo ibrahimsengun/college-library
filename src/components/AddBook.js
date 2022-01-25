@@ -57,6 +57,7 @@ const AddBook = () => {
                 name="name"
                 placeholder="Book Name"
                 autoComplete="off"
+                required
                 ref={bookNameRef}
               />
             </div>
@@ -68,6 +69,7 @@ const AddBook = () => {
                 type="text"
                 name="author"
                 placeholder="Author Name"
+                required
                 autoComplete="off"
                 ref={authorRef}
               />
@@ -92,6 +94,7 @@ const AddBook = () => {
                 type="text"
                 name="description"
                 placeholder="Description"
+                required
                 autoComplete="off"
                 ref={descriptionRef}
               />
@@ -104,6 +107,7 @@ const AddBook = () => {
                 type="url"
                 name="cover"
                 placeholder="Cover Image URL"
+                required
                 autoComplete="off"
                 ref={coverRef}
               />
@@ -115,6 +119,7 @@ const AddBook = () => {
               <input
                 type="number"
                 name="pages"
+                required
                 placeholder="How Many Pages"
                 ref={pagesRef}
               />

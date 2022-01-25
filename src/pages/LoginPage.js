@@ -52,7 +52,7 @@ const LoginPage = () => {
             <div className="header">Login Error</div>
             <p>{error.response.data.error.message}</p>
           </div>
-        );
+        );  
         setErrorMessage(message);
         setIsLoading(false);
       });

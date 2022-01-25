@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import validator from "validator";
 
 const RegisterPage = () => {
   const emailRef = useRef();
@@ -12,9 +13,57 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [checkState, setCheckState] = useState(false);
+  const [isPassStrong, setIsPassStrong] = useState(false);
+
+  const passChangeHandler = () => {
+    setIsPassStrong(
+      validator.isStrongPassword(passwordRef.current.value, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 0,
+      })
+    );
+  };
 
   async function submitHandler(event) {
     event.preventDefault();
+    console.log(nameRef.current.value.length);
+
+    if (nameRef.current.value.length < 1) {
+      setErrorMessage(
+        <div className="ui negative message">
+          <i
+            className="close icon"
+            onClick={() => {
+              setErrorMessage(null);
+            }}
+          ></i>
+          <div className="header">Register Error</div>
+          <p>Name field cannot be left empty</p>
+        </div>
+      );
+
+      return;
+    }
+
+    if (!isPassStrong) {
+      setErrorMessage(
+        <div className="ui negative message">
+          <i
+            className="close icon"
+            onClick={() => {
+              setErrorMessage(null);
+            }}
+          ></i>
+          <div className="header">Register Error</div>
+          <p>Password not strong</p>
+        </div>
+      );
+
+      return;
+    }
 
     setIsLoading(true);
 
@@ -98,8 +147,18 @@ const RegisterPage = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  onChange={passChangeHandler}
                   ref={passwordRef}
                 />
+                {isPassStrong ? (
+                  <div className="ui green label">
+                    <i className="thumbs up icon"></i>Strong
+                  </div>
+                ) : (
+                  <div className="ui red label">
+                    <i className="thumbs down icon"></i>Weak
+                  </div>
+                )}
               </div>
             </div>
 

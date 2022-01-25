@@ -13,7 +13,6 @@ const AllRentedBooks = () => {
           )}`
         )
         .then((res) => {
-
           const users = [];
           for (const i in res.data) {
             users.push({
@@ -43,17 +42,25 @@ const AllRentedBooks = () => {
   return (
     <>
       <h1>All Rented Books</h1>
-      <div className="ui list">
-        {allRentedBooks.length < 1 && <h3>No rental books</h3>}
-        {allRentedBooks &&
-          allRentedBooks.length > 0 &&
-          allRentedBooks.map((book) => (
-            <div className="item">
-              {book.userName} {"- "}
-              <div className="ui blue horizontal label">{book.bookName}</div>
-            </div>
-          ))}
-      </div>
+      <table className="ui celled table">
+        <thead>
+          <tr>
+            <th>Renter</th>
+            <th>Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allRentedBooks.length < 1 && <h3>No rental books</h3>}
+          {allRentedBooks &&
+            allRentedBooks.length > 0 &&
+            allRentedBooks.map((book) => (
+              <tr key={book.bookName}>
+                <td>{book.userName}</td>
+                <td>{book.bookName}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
     </>
   );
 };

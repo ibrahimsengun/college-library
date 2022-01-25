@@ -34,19 +34,33 @@ const AllUsers = () => {
   return (
     <>
       <h1>All Users</h1>
-      <div className="ui list">
-        {users.length > 0 &&
-          users.map((user) => (
-            <div className="item" key={user.id}>
-              {user.isAdmin ? (
-                <div className="ui blue horizontal label">Admin</div>
-              ) : (
-                <div className="ui green horizontal label">User</div>
-              )}
-              {user.name} - {user.email}{" "}
-            </div>
-          ))}
-      </div>
+      <table className="ui celled table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>User E-Mail</th>
+            <th>User Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.length > 0 &&
+            users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                {user.isAdmin ? (
+                  <td>
+                    <div className="ui green label">Admin</div>
+                  </td>
+                ) : (
+                  <td>
+                    <div className="ui blue label">User</div>
+                  </td>
+                )}
+              </tr>
+            ))}
+        </tbody>
+      </table>
     </>
   );
 };
